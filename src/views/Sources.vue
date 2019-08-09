@@ -16,14 +16,14 @@
    
   >
     <v-img
-      min-height="100px"
-      height="100px"
+      min-height="10vh"
+      
       v-bind:src="article.urlToImage"
       style="background-color:white"
     >
      </v-img>
 
-    <v-card-text style="min-height:250px;overflow:hidden">
+    <v-card-text style="min-height:8vh;overflow:hidden">
        <span class="align-end ">{{article.title}}</span><br>
     
       <hr>
