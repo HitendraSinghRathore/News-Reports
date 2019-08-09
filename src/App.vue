@@ -28,6 +28,11 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>News Reports</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn fab dark small color="indigo" @click="goHome()">
+        <v-icon dark>mdi-home</v-icon>
+
+      </v-btn>
     </v-app-bar>
 
     <v-content>
@@ -46,7 +51,7 @@
 
 <script>
 import axios from 'axios';
-import key from './file';
+
 
 export default {
    props: {
@@ -59,7 +64,8 @@ export default {
     }),
     created () {
       this.$vuetify.theme.dark = true;
-      axios.get('https://newsapi.org/v2/sources?language=en&apiKey='+key.api_key)
+      const url = 'https://newsapi.org/v2/sources?language=en&apiKey='+process.env.VUE_APP_NEWS_API_KEY;
+      axios.get(url)
       .then(response =>{
         this.sources = response.data.sources
       })
@@ -73,7 +79,10 @@ export default {
         return(require('../src/assets/images/'+id+'.png'));
       },
       selectSource(id){
-        
+        this.$router.push({path:`/source/${id}`});
+      },
+      goHome(){
+        this.$router.push({path:'/'})
       }
     }
 };
