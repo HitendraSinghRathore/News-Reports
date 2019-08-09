@@ -11,7 +11,7 @@
 
    </v-container>
     <v-layout wrap>
-         <v-flex v-for="article in articles" :key="article.title" xs4>
+         <v-flex v-for="article in articles" :key="article.title" md4 xs12>
          <v-card
     class="mx-auto "
    
@@ -71,6 +71,7 @@ export default {
             navigator.geolocation.getCurrentPosition(this.showPosition);
   } else { 
     alert("Location not supported, switching to Indian News...");
+    this.fetchArticles();
   }     
     }
   ,
