@@ -18,12 +18,13 @@
     <v-img
       min-height="10vh"
       
+      
       v-bind:src="article.urlToImage"
       style="background-color:white"
     >
      </v-img>
 
-    <v-card-text style="min-height:8vh;overflow:hidden">
+    <v-card-text style="min-height:8vh;overflow:hidden;display:flex;flex-direction:column;align-items:stretch">
        <span class="align-end ">{{article.title}}</span><br>
     
       <hr>
@@ -31,10 +32,10 @@
       
     </v-card-text>
 
-    <v-card-actions >
+    <v-card-actions style="display:flex;flex-direction:row;justify-content:space-between " >
       
       
-      <span class="text-sm mr-16">{{formatDate(article.publishedAt)}}</span>
+      <span class="text-sm ">{{formatDate(article.publishedAt)}}</span>
       <v-btn
         text
         color="white"
