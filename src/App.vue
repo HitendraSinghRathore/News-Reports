@@ -6,12 +6,16 @@
       clipped
     >
       <v-list dense>
-        <v-list-item v-on:click="">
-          <v-list-item-action>
-            <v-icon>dashboard</v-icon>
+        <v-list-item v-on:click="selectSource(source.id)" v-for="source in sources" v-bind:key="source.id">
+          <v-list-item-action >
+            <v-avatar size="32px">
+                <img
+                  class="img-circle elevation-7 mb-1"
+                  :src="getImage(source.id)" />
+          </v-avatar>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
+            <v-list-item-title>{{source.name}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         
@@ -41,15 +45,36 @@
 </template>
 
 <script>
+import axios from 'axios';
+import key from './file';
+
 export default {
    props: {
       source: String,
     },
     data: () => ({
       drawer: null,
+      sources:[],
+      error:null
     }),
     created () {
-      this.$vuetify.theme.dark = true
+      this.$vuetify.theme.dark = true;
+      axios.get('https://newsapi.org/v2/sources?language=en&apiKey='+key.api_key)
+      .then(response =>{
+        this.sources = response.data.sources
+      })
+      .catch(error =>{
+        this.error = error;
+      })
+
     },
+    methods:{
+      getImage(id){
+        return(require('../src/assets/images/'+id+'.png'));
+      },
+      selectSource(id){
+        
+      }
+    }
 };
 </script>
