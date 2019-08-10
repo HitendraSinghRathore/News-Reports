@@ -14,18 +14,18 @@
          <v-flex v-for="article in articles" :key="article.title" md4 xs12>
          <v-card
     class="mx-auto "
-   
+   style="display: flex;flex-direction: column;align-content: flex-end;"
   >
     <v-img
       min-height="10vh"
       
       
       v-bind:src="article.urlToImage"
-      style="background-color:white"
+      style="min-height: 10vh; background-color: white;flex-grow: 0;"
     >
      </v-img>
 
-    <v-card-text style="min-height:8vh;overflow:hidden;display:flex;flex-direction:column;align-items:stretch">
+    <v-card-text style="min-height:8vh;overflow:hidden">
        <span >{{article.title}}</span><br>
     
       <hr>
@@ -33,7 +33,7 @@
       
     </v-card-text>
 
-    <v-card-actions class="my-auto" style="display:flex;flex-direction:row;justify-content:space-between ">
+    <v-card-actions class="my-auto" >
       
       
       <span class="text-sm ">{{formatDate(article.publishedAt)}}</span>
@@ -41,8 +41,10 @@
         text
         color="white"
         v-on:click="showArticle(article.url)"
+        style="margin-left:1.3rem"
       >
         Explore More 
+        <v-icon right dark>mdi-arrow-top-right</v-icon>
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -116,6 +118,16 @@ axios.get(newsURL)
      var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
 
     return new Date(dateString).toLocaleDateString('us-US', options);
+    }
+  },
+  watch:{
+    '$route':{
+      handler:function(name){
+        this.loading = true;
+        this.fetchArticles();
+      },
+      deep:true,
+      immediate:true
     }
   }
 };

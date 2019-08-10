@@ -13,6 +13,7 @@
          <v-flex v-for="article in articles" :key="article.title" md4 xs12>
          <v-card
     class="mx-auto "
+    style="display: flex;flex-direction: column;align-content: flex-end;"
    
   >
     <v-img
@@ -20,11 +21,11 @@
       
       
       v-bind:src="article.urlToImage"
-      style="background-color:white"
+      style="min-height: 10vh; background-color: white;flex-grow: 0;"
     >
      </v-img>
 
-    <v-card-text style="min-height:8vh;overflow:hidden;display:flex;flex-direction:column;align-items:stretch">
+    <v-card-text style="min-height:8vh;overflow:hidden">
        <span class="align-end ">{{article.title}}</span><br>
     
       <hr>
@@ -32,7 +33,7 @@
       
     </v-card-text>
 
-    <v-card-actions style="display:flex;flex-direction:row;justify-content:space-between " >
+    <v-card-actions >
       
       
       <span class="text-sm ">{{formatDate(article.publishedAt)}}</span>
@@ -40,8 +41,10 @@
         text
         color="white"
         v-on:click="showArticle(article.url)"
+        style="margin-left:1.3rem"
       >
         Explore More 
+        <v-icon right dark>mdi-arrow-top-right</v-icon>
       </v-btn>
     </v-card-actions>
   </v-card>
