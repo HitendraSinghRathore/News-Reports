@@ -71,7 +71,7 @@ export default {
     ,
     created (){
       if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.showPosition);
+            navigator.geolocation.getCurrentPosition(this.showPosition,this.fetchArticles);
   } else { 
     alert("Location not supported, switching to Indian News...");
     this.fetchArticles();
@@ -109,8 +109,7 @@ axios.get(newsURL)
 
     },
     showArticle(url){
-            window.open(url,'_blank')
-
+            window.open(url,'_blank');
         }
         ,
 
