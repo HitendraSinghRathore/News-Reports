@@ -9,7 +9,7 @@
      <h1 class="font-lg text-red-600 text-center mx-auto">No Headlines found..So sorry</h1>
 
    </v-container>
-   <h4 class="headline p-2 block text-center">{{articles[0].source.name}} Headlines</h4>
+   <h4 class="headline p-2 block text-center" v-if="loading ==false">{{articles[0].source.name}} Headlines</h4>
     <v-layout wrap>
       
          <v-flex v-for="article in articles" :key="article.title" md4 xs12>
